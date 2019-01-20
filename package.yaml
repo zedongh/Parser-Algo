@@ -1,0 +1,38 @@
+library:
+  source-dirs: src
+tests:
+  parser-algo-test:
+    source-dirs: test
+    main: Spec.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - hspec
+    - QuickCheck
+    - parser-algo
+copyright: 2019 Author name here
+maintainer: example@example.com
+dependencies:
+- containers
+- base >= 4.7 && < 5
+name: parser-algo
+version: 0.1.0.0
+extra-source-files:
+- README.md
+- ChangeLog.md
+author: Author name here
+github: githubuser/parser-algo
+license: BSD3
+executables:
+  parser-algo-exe:
+    source-dirs: app
+    main: Main.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - parser-algo
+description: Please see the README on GitHub at <https://github.com/githubuser/parser-algo#readme>
