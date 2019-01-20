@@ -58,3 +58,7 @@ updateFollow firstSet followSet (Prod nt (_:ts)) = updateFollow firstSet followS
 followSet [] = error "grammar cannot be empty"
 followSet grammar@((Prod nt _):_) = fixpoint magic (M.insert nt (S.singleton Dollar) M.empty)
     where magic m = foldl (updateFollow (firstSet grammar)) m grammar
+
+followSetWith fiset [] = error "grammar cannot be empty"
+followSetWith fiset grammar@((Prod nt _):_) = fixpoint magic (M.insert nt (S.singleton Dollar) M.empty)
+    where magic m = foldl (updateFollow fiset) m grammar
