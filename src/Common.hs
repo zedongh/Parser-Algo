@@ -8,7 +8,7 @@ import Data.Set (Set)
 data Sym = Term String 
          | NonTerm String 
          | Epsilon
-         | Dollar -- should be construct be user, only using for follow set
+         | Dollar -- ^ should not be construct be user, only using for follow set
          deriving (Show, Eq, Ord)
 
 data Prod = Prod Sym [Sym] deriving (Show, Eq, Ord)
