@@ -4,6 +4,7 @@ import Common
 import LL
 import qualified Data.Map as M
 import qualified Data.Set as S 
+import Parser
 
 main :: IO ()
 main = hspec $ do
@@ -69,7 +70,7 @@ main = hspec $ do
                 table M.! (NonTerm "F", Term "id") `shouldBe` S.singleton (Prod (NonTerm "F") [Term "id"])
             it "M[(F, ()] = { F -> ( E ) }" $ do 
                 table M.! (NonTerm "F", Term "(") `shouldBe` S.singleton (Prod (NonTerm "F") [Term "(", NonTerm "E", Term ")"])
-        
+
         let grammar = [ Prod (NonTerm "S") [NonTerm "A", Term "x"]
                       , Prod (NonTerm "S") [NonTerm "B", Term "y"] 
                       , Prod (NonTerm "S") [Term "z"]
@@ -91,3 +92,6 @@ main = hspec $ do
         it "first(B)" $ do 
             fiset M.!? (NonTerm "B") `shouldBe` Just (S.fromList [Term "4", Term "3", Epsilon])
 
+        describe "grammar parser" $ do
+            it "ok" $ do
+                Just grammar `shouldBe` (parseGrammarMaybe "S->A x | B y | z; A -> 1 C B | 2 B; B -> 3 B | C ; C -> 4 |;")
