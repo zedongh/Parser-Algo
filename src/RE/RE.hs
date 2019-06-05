@@ -11,7 +11,7 @@ data RE a = Alt (RE a) (RE a)            -- r1 | r2
           | Repeat (RE a)                 -- r*
           | Single a                    -- a
           | Epsilon
-          deriving (Show, Functor)
+          deriving (Show, Functor, Eq)
 
 -- Using Nothing for epsilon trans
 re2nfa :: Eq a => RE (Maybe a) -> NFA (Maybe a)

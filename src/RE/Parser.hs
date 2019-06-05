@@ -27,16 +27,19 @@ symbol = L.symbol sc
 expr :: Parser (RE Char)
 expr = foldl1 Alt <$> expr0 `sepBy` symbol "|"
 
-expr0 :: Parser (RE Char)
-expr0 = do 
+expr0' :: Parser [RE Char]
+expr0' = do 
     exp <- expr1
     case exp of 
-        Epsilon -> return $ Epsilon 
+        Epsilon -> return [Epsilon]
         _ -> do 
-            exp1 <- expr0
+            exp1 <- expr0'
             case exp1 of 
-                Epsilon -> return $ exp
-                _ -> return $ Seq exp exp1
+                [Epsilon] -> return [exp]
+                _ -> return $ exp:exp1
+
+expr0 :: Parser (RE Char)
+expr0 = foldl1 Seq <$> expr0'
 
 expr1 :: Parser (RE Char)
 expr1 = do 
