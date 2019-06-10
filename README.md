@@ -10,7 +10,9 @@
 - [x] Follow Set
 - [x] LL(1) Table
 - [x] A grammar parser
-- [ ] LR
+- [x] LR(0) Automata Construction
+- [ ] GOTO/Action Table 
+- [ ] SLR/GLR
 
 ## TODO: 
 
