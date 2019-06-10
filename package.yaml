@@ -15,6 +15,7 @@ tests:
 copyright: 2019 Author name here
 maintainer: example@example.com
 dependencies:
+- multimap
 - parser-combinators
 - mtl
 - megaparsec

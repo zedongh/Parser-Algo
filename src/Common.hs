@@ -9,6 +9,8 @@ data Sym = Term String
          | NonTerm String 
          | Epsilon
          | Dollar -- ^ should not be construct be user, only using for follow set
+         | Dot    -- ^ should not be construct be user, only using for LR automata
+         | Entry  -- ^ should not be construct be user, only using for augment grammar entry
          deriving (Show, Eq, Ord)
 
 data Prod = Prod Sym [Sym] deriving (Show, Eq, Ord)
